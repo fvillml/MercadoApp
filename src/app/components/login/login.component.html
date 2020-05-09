@@ -1,0 +1,31 @@
+<div class = "login">
+  <h1 class= "title">Login</h1>
+
+  <form [formGroup]="loginForm" (ngSubmit)="goToLogin()">
+
+    <div class = "containers">
+      <label for="email"> Email</label>
+      <input
+        type="email"
+        placeholder="email@example.com"
+        id="email"
+        formControlName="email" />
+    </div>
+
+    <div class = "containers">
+      <label for="password"> Password</label>
+      <input
+        type="password"
+        id="password" f
+        formControlName="password"/>
+    </div>
+
+    <button
+      class ="btn-primary login-btn"
+      [disabled]="loginForm.invalid"> Enter</button>
+
+    <!-- TODO: add formatting  -->
+    {{ error }}
+  </form>
+
+</div>
