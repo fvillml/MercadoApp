@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email:['', Validators.required],
+      email:['', [Validators.email,Validators.required]],
       password:['', [Validators.required, Validators.minLength(6)]]
     })
   }
@@ -35,5 +35,15 @@ export class LoginComponent implements OnInit {
       this.error = message;
     });
 
+  }
+
+  getError(control: AbstractControl){
+    if(control.hasError('email')){
+      return 'Invalid Email';
+    } else if(control.hasError('required')){
+      return 'This field required';
+    } else if(control.hasError('minlength')){
+      return `Not enough characters ${control.errors.minlength.requiredLength} required`;
+    }
   }
 }

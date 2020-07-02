@@ -8,18 +8,23 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {AngularFireModule} from '@angular/fire'
 import {environment} from '../environments/environment'
 import {AngularFireAuthModule} from '@angular/fire/auth';
-import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+
+const materialModules = [MatInputModule];
 
 // These are the modules
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, RegisterComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.fire),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    ...materialModules
   ],
   providers: [],
   bootstrap: [AppComponent]
